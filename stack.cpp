@@ -1,18 +1,40 @@
 #include "stack.hpp"
+#include <string.h>
 
 Stack::Stack(size_t size) 
 {
     mTop = 0;
-    mStack = (char**)malloc(sizeof(char*)*size);
+    mStack = (const char**)malloc(sizeof(char*)*size);
     mSize = size;
 }
 
-int Stack::push(std::string value)
+int Stack::push(const std::string& value)
 {
     if(mTop == mSize) 
     {
         mSize = mSize*2;
-        mStack = (char**)realloc(mStack, sizeof(char*)*mSize);
+        mStack = (const char**)realloc(mStack, sizeof(char*)*mSize);
+        if(mStack == NULL)
+        {
+            return -1;
+        }
+        mStack[mTop] = value.c_str();
+        mTop++;
+        return 0;
+    }
+    else
+    {
+        mStack[mTop] = value.c_str();
+        mTop++;
+        return 0;
+    }
+}
+int Stack::push(const char* value)
+{
+    if(mTop == mSize) 
+    {
+        mSize = mSize*2;
+        mStack = (const char**)realloc(mStack, sizeof(char*)*mSize);
         if(mStack == NULL)
         {
             return -1;
@@ -28,7 +50,6 @@ int Stack::push(std::string value)
         return 0;
     }
 }
-
 std::string Stack::pop()
 {
     std::string ret;
@@ -40,7 +61,7 @@ std::string Stack::pop()
     if(mTop < mSize/2)
     {
         mSize = mSize/2;
-        mStack = (char**)realloc(mStack, sizeof(char*)*mSize);
+        mStack = (const char**)realloc(mStack, sizeof(char*)*mSize);
         if(mStack == NULL)
         {
             return "";
@@ -49,7 +70,7 @@ std::string Stack::pop()
 
     ret = mStack[mTop-1];
     mStack[mTop-1] = NULL;
-    mTop++;
+    mTop--;
     return ret;
 }
 

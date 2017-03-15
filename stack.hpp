@@ -1,12 +1,12 @@
 #include <string>
-#include <iostream>
+#include <stdlib.h>
 
 
 class Stack {
 
     private:
         int mTop;
-        char *mStack[];
+        const char **mStack;
         size_t mSize;
 
         size_t size();
@@ -15,5 +15,6 @@ class Stack {
 
 
         int push(const std::string& value);
+        int push(const char* value);
         std::string pop();
 };

@@ -1,4 +1,5 @@
-// stack by rob
+// static sized stack 
+// rob
 
 #include <string.h>
 #include <stdlib.h>
@@ -18,6 +19,7 @@ typedef struct Stack MyStack;
 char* stackPop(MyStack* this);
 int stackPush(MyStack* this, char* string);
 
+// get new Heap allocated stack
 MyStack* NewStack()
 {
     MyStack* pStack = (MyStack*)malloc(sizeof(MyStack));
@@ -27,7 +29,15 @@ MyStack* NewStack()
     return pStack; 
 }
 
+// init stack (for stack allocated stack)
+void stackInit(MyStack* this)
+{
+    this->top = -1;
+}
 
+// pop
+// pops a string off the top of the stack
+// ret - string
 char* stackPop(MyStack* this)
 {
     if (this->top == -1)
@@ -42,7 +52,7 @@ char* stackPop(MyStack* this)
 
 // push
 // pushes a string to the top of the calling stack
-// ret: 0 on suc, -1 on fail
+// ret - 0 on suc, -1 on fail
 int stackPush(MyStack* this, char* string)
 {
     if (string == NULL)
@@ -60,7 +70,9 @@ int stackPush(MyStack* this, char* string)
     }
 
     this->top = this->top + 1;
+    //strncpy(this->stack[this->top], string, strlen(string)+1);
     this->stack[this->top] = string;
     return 0;
 }
+
     

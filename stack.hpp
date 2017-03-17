@@ -1,3 +1,5 @@
+// dynamic sized stack
+// rob
 #include <string>
 #include <stdlib.h>
 

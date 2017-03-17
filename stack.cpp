@@ -24,6 +24,16 @@ Stack::Stack(size_t size)
     }
     mSize = size;
 }
+Stack::~Stack(void)
+{
+    for(size_t i = 0; i<mSize; i++)
+    {
+        free(mStack[i]);
+        mStack[i] = NULL;
+    }
+    free(mStack);
+    mStack = NULL;
+}
 
 int Stack::push(const std::string& value)
 {

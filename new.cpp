@@ -50,6 +50,17 @@ int main(int argc, char* argv[])
     std::cout << myStack.pop() << "\n";    
 
     std::cout << myStack.size() << std::endl;
+
+
+    Stack* newStack = new Stack(size);
+    newStack->push(swag);
+    newStack->pop();
+
+    newStack->push(swag);
+    newStack->push(swag);
+    newStack->push(swag);
+    delete newStack;
+    newStack = NULL;
     return 0;
 
 }

@@ -13,7 +13,7 @@ class Stack {
 
     public:
         Stack(size_t size);
-
+        ~Stack(void);
 
         int push(const std::string& value);
         int push(const char* value);
